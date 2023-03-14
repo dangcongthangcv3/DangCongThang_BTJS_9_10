@@ -319,7 +319,7 @@ document.getElementById('btnCapNhat').onclick = function(){
     // Lưu xong mới bật 2 nút button#btnThemSinhVien và input#maSinhVien
     
 }
-
+///
 function xoaSinhVienTheoMa(maSVClick) {
   // alert(maSVClick);
   var indexDel = -1;

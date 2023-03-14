@@ -95,6 +95,19 @@ function Validation () {
         document.getElementById(idError).innerHTML =  `${name} giá trị không hợp lệ!`;
         return false;
     }
+    this.kiemTraKhoangCach = function (value,idError,name) {
+        // tên đăng nhập 6-30 ký tự
+        //ít Nhất 1 ký tự hoa
+        var regexSpace = /[ ]/g;
+
+        // Kiểm tra giá trị
+        if(regexSpace.test(value)){
+            document.getElementById(idError).innerHTML =  `${name} không dùng khoảng cách!`;
+            return false
+        }
+        document.getElementById(idError).innerHTML =  '';
+        return true;
+    }
     this.dinhDangNgayThangNam = function (value,idError,name) {
         // tên đăng nhập 6-30 ký tự
         var regexNumber = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/\d\d\d\d$/;

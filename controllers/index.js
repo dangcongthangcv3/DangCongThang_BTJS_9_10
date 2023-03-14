@@ -27,21 +27,45 @@
     //     tongLuong = +nv.luongCB
     // }
     // nv.tongLuong = tongLuong
-    var taiKhoanTrue = true
+    
     var kiemTra = new Validation()
-debugger
-    // Tài khoản
-    taiKhoanTrue = kiemTra.kiemTraRong(taiKhoan, 'tbTKNV','Tài khoản') && kiemTra.kiemTraDoDai(taiKhoan, 'tbTKNV','Tài khoản', 4,6)
-    // function(kiemTraDauVaoRong)(ID, )
+    debugger
 
-    if(!taiKhoanTrue){
-      document.querySelector('.sp-thongbao').className = 'sp-thongbao-hide'
-      // return;
+    // Khởi tạo biến lổi của tài khoản
+    var loiTK = 0
+    var aa = ''
+    //Nếu taiKhoan có lổi thì lổi +1
+    if(!kiemTra.kiemTraRong(taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
+    else if(!kiemTra.kiemTraDoDai(taiKhoan, 'tbTKNV','Tài khoản', 4,6 )){loiTK++}
+    else if(!kiemTra.kiemTraKhoangCach(taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
+
+    // Nếu có lổi thì hiện class='sp-thongbao-hide'
+    if(loiTK!=0){
+      if(document.querySelector('#tbTKNV').className == 'sp-thongbao'){
+        document.querySelector('#tbTKNV.sp-thongbao').className = 'sp-thongbao-hide'
+        aa = (document.querySelector('#tbTKNV').className)
+      }
     }
     else{
-        document.querySelector('.sp-thongbao-hide').className = 'sp-thongbao'
+        document.querySelector('#tbTKNV.sp-thongbao-hide').className = 'sp-thongbao'
+        aa = (document.querySelector('#tbTKNV').className)
     }
-    
+
+    // Khởi tạo biến lổi của tên nhân viên
+    var loiHoTen = 0
+    //Nếu taiKhoan có lổi thì lổi +1
+    if(!kiemTra.kiemTraRong(hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
+    else if(!kiemTra.kiemTraKyTu(hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
+
+    // Nếu có lổi thì hiện class='sp-thongbao-hide'
+    if(loiHoTen!=0){
+      if(document.querySelector('#tbTen').className == 'sp-thongbao'){
+        document.querySelector('#tbTen.sp-thongbao').className = 'sp-thongbao-hide'
+      }
+    }
+    else{
+        document.querySelector('#tbTen.sp-thongbao-hide').className = 'sp-thongbao'
+    }
     // mangNhanVien.push(nv)
     //Từ mảng tạo ra giao diện
     // Hiện ra bảng giao diện

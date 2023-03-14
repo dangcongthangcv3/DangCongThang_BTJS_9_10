@@ -29,11 +29,10 @@
     // nv.tongLuong = tongLuong
     
     var kiemTra = new Validation()
-    debugger
+    
 
     // Khởi tạo biến lổi của tài khoản
     var loiTK = 0
-    var aa = ''
     //Nếu taiKhoan có lổi thì lổi +1
     if(!kiemTra.kiemTraRong(taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
     else if(!kiemTra.kiemTraDoDai(taiKhoan, 'tbTKNV','Tài khoản', 4,6 )){loiTK++}
@@ -42,29 +41,132 @@
     // Nếu có lổi thì hiện class='sp-thongbao-hide'
     if(loiTK!=0){
       if(document.querySelector('#tbTKNV').className == 'sp-thongbao'){
-        document.querySelector('#tbTKNV.sp-thongbao').className = 'sp-thongbao-hide'
+        document.querySelector('#tbTKNV').className = 'sp-thongbao-hide'
         aa = (document.querySelector('#tbTKNV').className)
       }
     }
     else{
-        document.querySelector('#tbTKNV.sp-thongbao-hide').className = 'sp-thongbao'
-        aa = (document.querySelector('#tbTKNV').className)
-    }
+        if(document.querySelector('#tbTKNV').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbTKNV').className = 'sp-thongbao'
 
+          aa = (document.querySelector('#tbTKNV').className)
+        }
+    }
     // Khởi tạo biến lổi của tên nhân viên
     var loiHoTen = 0
-    //Nếu taiKhoan có lổi thì lổi +1
+    //Nếu họ tên có lổi thì lổi +1
     if(!kiemTra.kiemTraRong(hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
     else if(!kiemTra.kiemTraKyTu(hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
-
     // Nếu có lổi thì hiện class='sp-thongbao-hide'
     if(loiHoTen!=0){
       if(document.querySelector('#tbTen').className == 'sp-thongbao'){
-        document.querySelector('#tbTen.sp-thongbao').className = 'sp-thongbao-hide'
+        document.querySelector('#tbTen').className = 'sp-thongbao-hide'
       }
     }
     else{
-        document.querySelector('#tbTen.sp-thongbao-hide').className = 'sp-thongbao'
+      if(document.querySelector('#tbTen').className = 'sp-thongbao-hide'){
+        document.querySelector('#tbTen').className = 'sp-thongbao'
+    }
+  }
+
+    // Khởi tạo biến lổi của Email
+    var loiEmail = 0
+    //Nếu email có lổi thì lổi +1
+    if(!kiemTra.kiemTraRong(email, 'tbEmail','Email')){loiEmail++}
+    else if(!kiemTra.kiemTraEmail(email, 'tbEmail','Email')){loiEmail++}
+
+    // Nếu có lổi thì hiện class='sp-thongbao-hide'
+    if(loiEmail!=0){
+      if(document.querySelector('#tbEmail').className == 'sp-thongbao'){
+        document.querySelector('#tbEmail').className = 'sp-thongbao-hide'
+      }
+    }
+    else{
+      if(document.querySelector('#tbEmail').className = 'sp-thongbao-hide'){
+        document.querySelector('#tbEmail').className = 'sp-thongbao'
+    }
+  }
+
+      // Khởi tạo biến lổi của mật khẩu
+      var loiMatKhau = 0
+      //Nếu mật khẩu có lổi thì lổi +1
+      if(!kiemTra.kiemTraMatKhau(matKhau, 'tbMatKhau','Mật khẩu')){loiMatKhau++}
+  
+      // Nếu có lổi thì hiện class='sp-thongbao-hide'
+      if(loiMatKhau!=0){
+        if(document.querySelector('#tbMatKhau').className == 'sp-thongbao'){
+          document.querySelector('#tbMatKhau').className = 'sp-thongbao-hide'
+        }
+      }
+      else{
+        if(document.querySelector('#tbMatKhau').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbMatKhau').className = 'sp-thongbao'
+      }
+    }
+      // Khởi tạo biến lổi của ngày vào lám
+      var loiNgayLam = 0
+      //Nếu ngày vào làm có lổi thì lổi +1
+      if(!kiemTra.kiemTraNgayThangNam(ngayLam, 'tbNgay','')){loiNgayLam++}
+  
+      // Nếu có lổi thì hiện class='sp-thongbao-hide'
+      if(loiNgayLam!=0){
+        if(document.querySelector('#tbNgay').className == 'sp-thongbao'){
+          document.querySelector('#tbNgay').className = 'sp-thongbao-hide'
+        }
+      }
+      else{
+        if(document.querySelector('#tbNgay').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbNgay').className = 'sp-thongbao'
+      }
+    }
+      // Khởi tạo biến lổi của lương cơ bản
+      var loiLuongCB = 0
+      //Nếu lương cơ bản có lổi thì lổi +1
+      if(!kiemTra.kiemTraGiaTri(luongCB,'tbLuongCB','Lương cơ bản',1000000,20000000)){loiLuongCB++}
+  
+      // Nếu có lổi thì hiện class='sp-thongbao-hide'
+      if(loiLuongCB!=0){
+        if(document.querySelector('#tbLuongCB').className == 'sp-thongbao'){
+          document.querySelector('#tbLuongCB').className = 'sp-thongbao-hide'
+        }
+      }
+      else{
+        if(document.querySelector('#tbLuongCB').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbLuongCB').className = 'sp-thongbao'
+      }
+    }
+      // Khởi tạo biến lổi của Chức vụ
+      var loiChucVu = 0
+      //Nếu lương cơ bản có lổi thì lổi +1
+      if(!kiemTra.kiemTraChucVu(chucVu,'tbChucVu','Chức vụ')){loiChucVu++}
+  
+      // Nếu có lổi thì hiện class='sp-thongbao-hide'
+      if(loiChucVu!=0){
+        if(document.querySelector('#tbChucVu').className == 'sp-thongbao'){
+          document.querySelector('#tbChucVu').className = 'sp-thongbao-hide'
+        }
+      }
+      else{
+        if(document.querySelector('#tbChucVu').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbChucVu').className = 'sp-thongbao'
+      }
+    }
+    debugger
+      // Khởi tạo biến lổi của giờ làm
+      var loiGioLam = 0
+      //Nếu lương cơ bản có lổi thì lổi +1
+      if(!kiemTra.kiemTraGiaTri(gioLamTrongThang,'tbGiolam','Giờ làm',80,200)){loiGioLam++}
+  
+      // Nếu có lổi thì hiện class='sp-thongbao-hide'
+      if(loiGioLam!=0){
+        if(document.querySelector('#tbGiolam').className == 'sp-thongbao'){
+          document.querySelector('#tbGiolam').className = 'sp-thongbao-hide'
+        }
+      }
+      else{
+        if(document.querySelector('#tbGiolam').className = 'sp-thongbao-hide'){
+          document.querySelector('#tbGiolam').className = 'sp-thongbao'
+      }
     }
     // mangNhanVien.push(nv)
     //Từ mảng tạo ra giao diện

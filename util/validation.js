@@ -65,34 +65,20 @@ function Validation () {
             document.getElementById(idError).innerHTML =''
             return true
         }
-        document.getElementById(idError).innerHTML =  `${name} giá trị không hợp lệ!`;
+        document.getElementById(idError).innerHTML =  `${name} là số!`;
         return false;
     }
-
-
-
-
-
-    //Chưa sữa từ đây xuống dưới
-    this.kiemTraInHoa1Lan = function (value,idError,name) {
+    this.kiemTraMatKhau = function (value,idError,name) {
         // tên đăng nhập 6-30 ký tự
         //ít Nhất 1 ký tự hoa
-        var regexOneUpper = /^.*[A-Z]+.*$/g;
-        //ít Nhất 1 số
-        var regexDigit = /^.*[0-9]+.*$/g;
-        //Ít nhất 1 ký tự đặt biệt
-        var regexoNESpecial = /^.*[#?!@$%^&*-]+.*$/g;
+        var regexMatKhau = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#?!@$%^&*-])[A-Za-z\d#?!@$%^&*-]{6,10}$/g;
 
         // Kiểm tra giá trị
-        if(regexNumber.test(value)){
-            if(Number(value)<minValue || Number(value)> maxValue){
-                document.getElementById(idError).innerHTML =  `${name} từ ${minValue} đến ${maxValue}`;
-                return false;
-            }
+        if(regexMatKhau.test(value)){
             document.getElementById(idError).innerHTML =''
             return true
         }
-        document.getElementById(idError).innerHTML =  `${name} giá trị không hợp lệ!`;
+        document.getElementById(idError).innerHTML =  `${name} từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt)`;
         return false;
     }
     this.kiemTraKhoangCach = function (value,idError,name) {
@@ -108,21 +94,26 @@ function Validation () {
         document.getElementById(idError).innerHTML =  '';
         return true;
     }
-    this.dinhDangNgayThangNam = function (value,idError,name) {
+    this.kiemTraNgayThangNam = function (value,idError,name) {
         // tên đăng nhập 6-30 ký tự
-        var regexNumber = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/\d\d\d\d$/;
+        var regexMDY = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/\d\d\d\d$/;
         //Ký tự đặc biệt "^.*[#?!@$%^&*-]+.*$"
 
         // Kiểm tra giá trị
-        if(regexNumber.test(value)){
-            if(Number(value)<minValue || Number(value)> maxValue){
-                document.getElementById(idError).innerHTML =  `${name} từ ${minValue} đến ${maxValue}`;
-                return false;
-            }
-            document.getElementById(idError).innerHTML =''
+        if(regexMDY.test(value)){
             return true
         }
         document.getElementById(idError).innerHTML =  `${name} giá trị không hợp lệ!`;
         return false;
+    }
+    this.kiemTraChucVu = function (value,idError,name) {
+        regexChucVu = ''
+        // Kiểm tra giá trị
+        if(value=='Chọn chức vụ'){
+            document.getElementById(idError).innerHTML =  `${name} không hợp lệ!`;
+            return false
+        }
+        document.getElementById(idError).innerHTML =  '';
+        return true;
     }
 }

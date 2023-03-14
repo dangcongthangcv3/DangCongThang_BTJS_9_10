@@ -109,7 +109,7 @@ function Validation () {
     this.kiemTraChucVu = function (value,idError,name) {
         regexChucVu = ''
         // Kiểm tra giá trị
-        if(value=='Chọn chức vụ'){
+        if(value==0){
             document.getElementById(idError).innerHTML =  `${name} không hợp lệ!`;
             return false
         }

@@ -1,11 +1,12 @@
    //Tài khoản tối đa 4 - 6 ký số
    //Kiểm tra độ dài
    
-   var validate = new Validation()
+   
    var DSNV = []
    
   document.getElementById('btnThemNV').onclick = function(){
-    debugger
+    
+    
     //input: nv: NhanVien
     var nv = new NhanVien();
     //Lấy dữ liệu từ người dùng\
@@ -18,16 +19,17 @@
     nv.chucVu = document.querySelector('#chucvu').value;
     nv.gioLamTrongThang = Number(document.querySelector('#gioLam').value);
     //Tính tổng lương
+    debugger
     var tongLuong = 0
     
  
-    if(nv.chucVu =='Sếp'){
+    if(nv.chucVu ==1){
         tongLuong = +nv.luongCB * 3
     }
-    else if(nv.chucVu =='Trưởng phòng'){
+    else if(nv.chucVu ==2){
         tongLuong = +nv.luongCB * 2
     }
-    else if(nv.chucVu =='Nhân viên'){
+    else if(nv.chucVu ==3){
         tongLuong = +nv.luongCB
     }
     else{
@@ -35,10 +37,10 @@
     }
     nv.tongLuong = tongLuong
 
-    var tagSelect = document.getElementById("chucvu");
-    var index = tagSelect.selectedIndex;
-    var Position = tagSelect.options[index].innerHTML;
-    nv.chucVu = Position
+    // var tagSelect = document.getElementById("chucvu");
+    // var index = tagSelect.selectedIndex;
+    // var Position = tagSelect.options[index].innerHTML;
+    // nv.chucVu = Position
 
     var xepLoai = ''
     if(nv.gioLamTrongThang >=80 && nv.gioLamTrongThang <160){
@@ -54,40 +56,55 @@
       xepLoai = 'nhân viên xuất sắc'
     }
     nv.xepLoai = xepLoai
-
-    var kiemTra = new Validation()
+    
     //Chưa láp Validation vào
+    debugger
+    //hamLoi()
 
+    //Thêm nhân viên
+    DSNV.push(nv)
+    console.log(DSNV)
+    //Từ mảng tạo ra giao diện
+    // Hiện ra bảng giao diện
+    renderTableNhanVien(DSNV);
+    // console.log(nv)
+    
+
+   }
+
+function hamLoi(){
+  var kiemTra = new Validation()
+  var themaa = new NhanVien()
     // Khởi tạo biến lổi của tài khoản
     var loiTK = 0
     //Nếu taiKhoan có lổi thì lổi +1
-    if(!kiemTra.kiemTraRong(nv.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
-    else if(!kiemTra.kiemTraDoDai(nv.taiKhoan, 'tbTKNV','Tài khoản', 4,6 )){loiTK++}
-    else if(!kiemTra.kiemTraKhoangCach(nv.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
+    if(!kiemTra.kiemTraRong(themaa.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
+    else if(!kiemTra.kiemTraDoDai(themaa.taiKhoan, 'tbTKNV','Tài khoản', 4,6 )){loiTK++}
+    else if(!kiemTra.kiemTraKhoangCach(themaa.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
 
     // Nếu có lổi thì hiện class='sp-thongbao-hide'
     if(loiTK!=0){
       if(document.querySelector('#tbTKNV').className == 'sp-thongbao'){
         document.querySelector('#tbTKNV').className = 'sp-thongbao-hide'
-        aa = (document.querySelector('#tbTKNV').className)
+        
       }
     }
     else{
         if(document.querySelector('#tbTKNV').className = 'sp-thongbao-hide'){
           document.querySelector('#tbTKNV').className = 'sp-thongbao'
-
-          aa = (document.querySelector('#tbTKNV').className)
         }
     }
     // Khởi tạo biến lổi của tên nhân viên
     var loiHoTen = 0
     //Nếu họ tên có lổi thì lổi +1
-    if(!kiemTra.kiemTraRong(nv.hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
-    else if(!kiemTra.kiemTraKyTu(nv.hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
+    if(!kiemTra.kiemTraRong(themaa.hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
+    else if(!kiemTra.kiemTraKyTu(themaa.hoTen, 'tbTen','Tên nhân viên')){loiHoTen++}
     // Nếu có lổi thì hiện class='sp-thongbao-hide'
+
     if(loiHoTen!=0){
       if(document.querySelector('#tbTen').className == 'sp-thongbao'){
         document.querySelector('#tbTen').className = 'sp-thongbao-hide'
+   
       }
     }
     else{
@@ -99,8 +116,8 @@
     // Khởi tạo biến lổi của Email
     var loiEmail = 0
     //Nếu email có lổi thì lổi +1
-    if(!kiemTra.kiemTraRong(nv.email, 'tbEmail','Email')){loiEmail++}
-    else if(!kiemTra.kiemTraEmail(nv.email, 'tbEmail','Email')){loiEmail++}
+    if(!kiemTra.kiemTraRong(themaa.email, 'tbEmail','Email')){loiEmail++}
+    else if(!kiemTra.kiemTraEmail(themaa.email, 'tbEmail','Email')){loiEmail++}
 
     // Nếu có lổi thì hiện class='sp-thongbao-hide'
     if(loiEmail!=0){
@@ -117,7 +134,7 @@
       // Khởi tạo biến lổi của mật khẩu
       var loiMatKhau = 0
       //Nếu mật khẩu có lổi thì lổi +1
-      if(!kiemTra.kiemTraMatKhau(nv.matKhau, 'tbMatKhau','Mật khẩu')){loiMatKhau++}
+      if(!kiemTra.kiemTraMatKhau(themaa.matKhau, 'tbMatKhau','Mật khẩu')){loiMatKhau++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
       if(loiMatKhau!=0){
@@ -133,7 +150,7 @@
       // Khởi tạo biến lổi của ngày vào lám
       var loiNgayLam = 0
       //Nếu ngày vào làm có lổi thì lổi +1
-      if(!kiemTra.kiemTraNgayThangNam(nv.ngayLam, 'tbNgay','')){loiNgayLam++}
+      if(!kiemTra.kiemTraNgayThangNam(themaa.ngayLam, 'tbNgay','')){loiNgayLam++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
       if(loiNgayLam!=0){
@@ -149,7 +166,7 @@
       // Khởi tạo biến lổi của lương cơ bản
       var loiLuongCB = 0
       //Nếu lương cơ bản có lổi thì lổi +1
-      if(!kiemTra.kiemTraGiaTri(nv.luongCB,'tbLuongCB','Lương cơ bản',1000000,20000000)){loiLuongCB++}
+      if(!kiemTra.kiemTraGiaTri(themaa.luongCB,'tbLuongCB','Lương cơ bản',1000000,20000000)){loiLuongCB++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
       if(loiLuongCB!=0){
@@ -165,7 +182,8 @@
       // Khởi tạo biến lổi của Chức vụ
       var loiChucVu = 0
       //Nếu lương cơ bản có lổi thì lổi +1
-      if(!kiemTra.kiemTraChucVu(nv.chucVu,'tbChucVu','Chức vụ')){loiChucVu++}
+      debugger
+      if(!kiemTra.kiemTraChucVu(themaa.chucVu,'tbChucVu','Chức vụ')){loiChucVu++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
       if(loiChucVu!=0){
@@ -178,11 +196,11 @@
           document.querySelector('#tbChucVu').className = 'sp-thongbao'
       }
     }
-    debugger
+    
       // Khởi tạo biến lổi của giờ làm
       var loiGioLam = 0
       //Nếu lương cơ bản có lổi thì lổi +1
-      if(!kiemTra.kiemTraGiaTri(nv.gioLamTrongThang,'tbGiolam','Giờ làm',80,200)){loiGioLam++}
+      if(!kiemTra.kiemTraGiaTri(themaa.gioLamTrongThang,'tbGiolam','Giờ làm',80,200)){loiGioLam++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
       if(loiGioLam!=0){
@@ -196,30 +214,31 @@
       }
     }
 
+}
 
-    //Thêm nhân viên
-    DSNV.push(nv)
-    console.log(DSNV)
-    //Từ mảng tạo ra giao diện
-    // Hiện ra bảng giao diện
-    renderTableNhanVien(DSNV);
-    // console.log(nv)
-    
-
-   }
 
 
 function renderTableNhanVien(arrNhanVien) {
   var htmlString = '';
+  var chucaa
   for(var index = 0 ; index < arrNhanVien.length; index++) {
       var nv = arrNhanVien[index];
+      if(nv.chucVu==1){
+        chucaa='Sếp'
+      }
+      else if(nv.chucVu==2){
+        chucaa ='Trưởng phòng'
+      }
+      else if(nv.chucVu==3){
+        chucaa='Nhân viên'
+      }
       htmlString += `
           <tr>
-              <td>${nv.nv.taiKhoan}</td>
+              <td>${nv.taiKhoan}</td>
               <td>${nv.hoTen}</td>
               <td>${nv.email}</td>
               <td>${nv.ngayLam}</td>
-              <td>${nv.chucVu}</td>
+              <td>${chucaa}</td>
               <td>${nv.tongLuong}</td>
               <td>${nv.xepLoai}</td>
               <td>
@@ -235,6 +254,7 @@ function renderTableNhanVien(arrNhanVien) {
   
 }
 function layThongTin(maNhanVienClick){
+  debugger
   
   document.getElementById("tknv").disabled = true;
   document.getElementById("btnThemNV").disabled = true;
@@ -247,8 +267,8 @@ function layThongTin(maNhanVienClick){
         document.querySelector('#password').value = DSNV[index].matKhau
         document.querySelector('#datepicker').value = DSNV[index].ngayLam
         document.querySelector('#luongCB').value = DSNV[index].luongCB
-        // document.querySelector('#chucvu').value = DSNV[index].chucVu
-        document.querySelector('#gioLamTrongThang').value = DSNV[index].gioLamTrongThang
+        document.querySelector('#chucvu').value = DSNV[index].chucVu
+        document.querySelector('#gioLam').value = DSNV[index].gioLamTrongThang
           break
       }
   }
@@ -256,7 +276,7 @@ function layThongTin(maNhanVienClick){
 }
 
 document.getElementById('btnCapNhat').onclick = function(){
-  debugger
+  
   // Input: Lấy thông tin người dùng từ giao diện đã thay đổi vào object
   var nhanVienEdit = new NhanVien()
   

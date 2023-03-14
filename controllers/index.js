@@ -3,9 +3,8 @@
    
    
    var DSNV = []
-   
   document.getElementById('btnThemNV').onclick = function(){
-    
+
     
     //input: nv: NhanVien
     var nv = new NhanVien();
@@ -19,7 +18,7 @@
     nv.chucVu = document.querySelector('#chucvu').value;
     nv.gioLamTrongThang = Number(document.querySelector('#gioLam').value);
     //Tính tổng lương
-    debugger
+    
     var tongLuong = 0
     
  
@@ -58,7 +57,7 @@
     nv.xepLoai = xepLoai
     
     //Chưa láp Validation vào
-    debugger
+    
     //hamLoi()
 
     //Thêm nhân viên
@@ -182,7 +181,7 @@ function hamLoi(){
       // Khởi tạo biến lổi của Chức vụ
       var loiChucVu = 0
       //Nếu lương cơ bản có lổi thì lổi +1
-      debugger
+      
       if(!kiemTra.kiemTraChucVu(themaa.chucVu,'tbChucVu','Chức vụ')){loiChucVu++}
   
       // Nếu có lổi thì hiện class='sp-thongbao-hide'
@@ -255,9 +254,9 @@ function renderTableNhanVien(arrNhanVien) {
 }
 function layThongTin(maNhanVienClick){
   debugger
-  
-  document.getElementById("tknv").disabled = true;
-  document.getElementById("btnThemNV").disabled = true;
+  document.getElementById('btnCapNhat').disabled = false
+  document.getElementById('tknv').disabled = true
+  document.getElementById('btnThemNV').disabled = true
   for(var index = 0; index<=DSNV.length; index++){
       // in thông tin sinh viên tìm thấy lên giao diện
       if(DSNV[index].taiKhoan === maNhanVienClick){
@@ -276,7 +275,6 @@ function layThongTin(maNhanVienClick){
 }
 
 document.getElementById('btnCapNhat').onclick = function(){
-  
   // Input: Lấy thông tin người dùng từ giao diện đã thay đổi vào object
   var nhanVienEdit = new NhanVien()
   
@@ -286,8 +284,8 @@ document.getElementById('btnCapNhat').onclick = function(){
   nhanVienEdit.matKhau = document.querySelector('#password').value
   nhanVienEdit.ngayLam = document.querySelector('#datepicker').value
   nhanVienEdit.luongCB = document.querySelector('#luongCB').value
-  // nhanVienEdit.chucVu = document.querySelector('#chucVu').value
-  nhanVienEdit.gioLamTrongThang = document.querySelector('#gioLamTrongThang').value
+  nhanVienEdit.chucVu = document.querySelector('#chucvu').value
+  nhanVienEdit.gioLamTrongThang = document.querySelector('#gioLam').value
   
 
 
@@ -307,8 +305,7 @@ document.getElementById('btnCapNhat').onclick = function(){
     renderTableNhanVien(DSNV)
     // Lưu store sau khi thay đổi
     // Lưu xong mới bật 2 nút button#btnThemSinhVien và input#maSinhVien
-    document.getElementById('taiKhoan').disabled = false
-    document.getElementById('btnThemNV').disabled = false
+    
 }
 
 function xoaSinhVienTheoMa(maSVClick) {

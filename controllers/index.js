@@ -249,7 +249,8 @@ function renderTableNhanVien(arrNhanVien) {
               <td>${nv.tongLuong}</td>
               <td>${nv.xepLoai}</td>
               <td>
-                  <button class="btn btn-danger" onclick="xoaNhanVien('${nv.taiKhoan}')">Xóa</button>
+                  <button class="btn btn-danger" onclick="xoaSinhVienTheoMa('${nv.taiKhoan}')">Xoá Mã</button>
+                  <button class="btn btn-danger" onclick="xoaLocal()">Xoá Local</button>
                   <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#myModal" onclick="layThongTin('${nv.taiKhoan}')">Chỉnh sửa </button>
               </td>
           </tr>
@@ -260,40 +261,9 @@ function renderTableNhanVien(arrNhanVien) {
   return htmlString; ///'<tr>.....</tr>'
   
 }
-//lấy item từ LS
-function getLocalStorage() {
-  if (localStorage.getItem("DSNV")) {
-    let nhanVien = localStorage.getItem("DSNV");
-    var listnew = JSON.parse(nhanVien);
-    for (let i = 0; i < listnew.length; i++) {
-      var nv = new Nhanvien();
-      nv.user = listnew[i].user;
-      nv.name = listnew[i].name;
-      nv.email = listnew[i].email;
-      nv.password = listnew[i].password;
-      nv.date = listnew[i].date;
-      nv.salary = listnew[i].salary;
-      nv.position = listnew[i].position;
-      nv.workTime = listnew[i].workTime;
-      listNV.push(nv);
-    }
-    renderTable(listNV);
-  }
+function xoaLocal(){
+  localStorage.removeItem('DSNV')
 }
-getLS();
-function xoaNhanVien(taiKhoan) {
-  let maXoaNV = -1;
-  for (var i = 0; i < DSNV.length; i++) {
-    if (DSNV[i].taiKhoan === taiKhoan) {
-      maXoaNV = i;
-      break;
-    }
-  }
-  DSNV.splice(maXoaNV, 1);
-  renderTable(listNV);
-  luuLocalStorage();
-}
-
 function layThongTin(maNhanVienClick){
   
   document.getElementById('btnCapNhat').disabled = false
@@ -349,7 +319,21 @@ document.getElementById('btnCapNhat').onclick = function(){
     // Lưu xong mới bật 2 nút button#btnThemSinhVien và input#maSinhVien
     
 }
-
+///
+function xoaSinhVienTheoMa(maSVClick) {
+  // alert(maSVClick);
+  var indexDel = -1;
+  for(var index = 0 ; index < DSNV.length;index++){
+      if(DSNV[index].taiKhoan === maSVClick) {
+          indexDel = index;
+          break;
+      }
+  }
+  //Xoá đi sinh viên tại vị trí đó trong mảng
+  DSNV.splice(indexDel,1);
+  //Tạo lại bảng table Sinh Viên
+  renderTableNhanVien(DSNV);
+}
 
 //Viết hàm để lưu trử vào localStorage
 function luuLocalStorage(){

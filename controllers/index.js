@@ -60,9 +60,7 @@
       var kiemTra = new Validation()
         // Khởi tạo biến lổi của tài khoản
         var loiTK = 0
-        debugger
         //Nếu taiKhoan có lổi thì lổi +1
-      
         if(!kiemTra.kiemTraRong(nv.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
         else if(!kiemTra.kiemTraDoDai(nv.taiKhoan, 'tbTKNV','Tài khoản', 4,6 )){loiTK++}
         else if(!kiemTra.kiemTraKhoangCach(nv.taiKhoan, 'tbTKNV','Tài khoản')){loiTK++}
@@ -209,7 +207,6 @@
     // Hiện ra bảng giao diện
     renderTableNhanVien(DSNV);
     // console.log(nv)
-    luuLocalStorage()
     reset()
    }
 function reset(){
@@ -222,7 +219,20 @@ function reset(){
   document.querySelector('#gioLam').value=0;
 }
 
+document.getElementById("tknv").oninput = function () {
+  for (var i = 0; i < DSNV.length; i++) {
+    if (DSNV[i].taiKhoan == document.getElementById("tknv").value) {
+      document.getElementById("tbTrungID").innerHTML = `Tài khoản đã tồn tại`;
+      document.getElementById("tbTrungID").className = 'trungID-hien';
+      document.getElementById("btnThemNV").disabled = true;
 
+      break;
+    } else {
+      document.getElementById("tbTrungID").className = 'trungID'
+      document.getElementById("btnThemNV").disabled = false;
+    }
+  }
+};
 
 
 function renderTableNhanVien(arrNhanVien) {
@@ -250,7 +260,6 @@ function renderTableNhanVien(arrNhanVien) {
               <td>${nv.xepLoai}</td>
               <td>
                   <button class="btn btn-danger" onclick="xoaSinhVienTheoMa('${nv.taiKhoan}')">Xoá Mã</button>
-                  <button class="btn btn-danger" onclick="xoaLocal()">Xoá Local</button>
                   <button class="btn btn-danger mx-2" data-toggle="modal" data-target="#myModal" onclick="layThongTin('${nv.taiKhoan}')">Chỉnh sửa </button>
               </td>
           </tr>
@@ -260,9 +269,6 @@ function renderTableNhanVien(arrNhanVien) {
   document.querySelector('tbody').innerHTML = htmlString;
   return htmlString; ///'<tr>.....</tr>'
   
-}
-function xoaLocal(){
-  localStorage.removeItem('DSNV')
 }
 function layThongTin(maNhanVienClick){
   
@@ -335,26 +341,6 @@ function xoaSinhVienTheoMa(maSVClick) {
   renderTableNhanVien(DSNV);
 }
 
-//Viết hàm để lưu trử vào localStorage
-function luuLocalStorage(){
-  // Lưu mangSinhVien Vào localstorage
-  //B1: Biến đổi mangSinhVien Thành string 
-  var stringMangNhanVien = JSON.stringify(DSNV)
-  // B2 lưu vào localStorage
-  localStorage.setItem('DSNV', stringMangNhanVien)
-}
-
-function layStore(){
-  //Truethy: trong if(value), value là true, ([]),if (42), if ("0"), if ("false"), if (new Date()), if (-42), if (12n), if (3.14), if (-3.14), if (Infinity), if (-Infinity)
-  // falsthy: trong if(value),value là false, -0, 0n,"", '', ``, null, undefined, NaN, document.all
-  if(localStorage.getItem('DSNV'))
-  var stringMangNhanVien = localStorage.getItem('DSNV')
-  DSNV = JSON.parse(stringMangNhanVien)
-  console.log(DSNV)
-
-  renderTableNhanVien(DSNV)
-  
-}
 
 document.getElementById('searchName').oninput = function(){
   var mangNhanVienTimKiem = []

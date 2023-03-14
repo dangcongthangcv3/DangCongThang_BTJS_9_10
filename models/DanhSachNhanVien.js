@@ -1,5 +1,5 @@
 function DanhSachNhanVien(){
-    this.DSNV = [];
+    this.DSNV = []
     this.ThemNhanVien = function(nvThem){
         var a
     }

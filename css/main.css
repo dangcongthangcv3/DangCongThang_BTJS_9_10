@@ -1,7 +1,10 @@
 .sp-thongbao {
+  display: none;
+}
+.sp-thongbao-hide {
   color: red;
   margin-left: 2px; 
-  display: none;
+  display: inline-block;
 }
 
 #SapXepGiam{

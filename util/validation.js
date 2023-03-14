@@ -43,7 +43,6 @@ function Validation () {
     }
     this.kiemTraDoDai = function (value,idError,name,minLength,maxLength) {
         // tên đăng nhập 6-30 ký tự
-        var regexNumber = /^[0-9]+$/;
 
         // Nếu chuỗi định dạng test thành công value là true
         if(value.length >maxLength || value.length <minLength){
@@ -77,8 +76,12 @@ function Validation () {
     //Chưa sữa từ đây xuống dưới
     this.kiemTraInHoa1Lan = function (value,idError,name) {
         // tên đăng nhập 6-30 ký tự
-        var regexNumber = /^.*[A-Z0-9]+.*$/;
-        //Ký tự đặc biệt "^.*[#?!@$%^&*-]+.*$"
+        //ít Nhất 1 ký tự hoa
+        var regexOneUpper = /^.*[A-Z]+.*$/g;
+        //ít Nhất 1 số
+        var regexDigit = /^.*[0-9]+.*$/g;
+        //Ít nhất 1 ký tự đặt biệt
+        var regexoNESpecial = /^.*[#?!@$%^&*-]+.*$/g;
 
         // Kiểm tra giá trị
         if(regexNumber.test(value)){
@@ -94,7 +97,7 @@ function Validation () {
     }
     this.dinhDangNgayThangNam = function (value,idError,name) {
         // tên đăng nhập 6-30 ký tự
-        var regexNumber = /\b(0?[1-9]|[12]\d|3[01])[\/\-.](0?[1-9]|[12]\d|3[01])[\/\-.](\d{2}|\d{4})\b/;
+        var regexNumber = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/\d\d\d\d$/;
         //Ký tự đặc biệt "^.*[#?!@$%^&*-]+.*$"
 
         // Kiểm tra giá trị
